@@ -252,11 +252,11 @@ flowchart TB
     A[Client]
     B["Headers\n(role, org_unit, geo,\nticket_id, justification)"]
     C["Gate 0: Identity/Role Context\n(dev: headers; prod: JWT claims)"]
-    D["Gate 1: Intent Classifier\n(zero-shot SBERT) → intent + confidence"]
-    E["Gate 2: Policy Check\n(YAML RBAC/ABAC) → allow/deny + reason"]
-    F[ALLOW → (optional) Retrieval ACLs / Redaction]
+    D["Gate 1: Intent Classifier\n(zero-shot SBERT) -> intent + confidence"]
+    E["Gate 2: Policy Check\n(YAML RBAC/ABAC) -> allow/deny + reason"]
+    F["ALLOW -> (optional) Retrieval ACLs / Redaction"]
     G[LLM call]
-    H[DENY → return refusal with reason]
+    H["DENY -> return refusal with reason"]
     I["Audit\nJSONL with role/attrs/intent/decision/latency"]
     A --> B --> C --> D --> E
     E -->|allow| F --> G --> I
