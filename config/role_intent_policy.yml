@@ -1,0 +1,29 @@
+policy_version: "1.0.0"
+intents:
+  ask_public_policy:   { resources: ["wiki_public"] }
+  write_code:          { resources: ["eng_snippets"] }
+  retrieve_hr_payroll: { resources: ["hr_payroll"], requires_attr: ["org_unit:HR"] }
+  retrieve_customer_pii: { resources: ["crm"], pii: true }
+  ask_metrics_finance: { resources: ["finance_reports"] }
+  admin_override:      { resources: ["*"], break_glass: true }
+
+roles:
+  intern:
+    allow: ["ask_public_policy", "write_code"]
+    deny:  ["retrieve_hr_payroll", "retrieve_customer_pii", "admin_override"]
+
+  engineer:
+    allow: ["ask_public_policy", "write_code"]
+    deny:  ["retrieve_hr_payroll", "retrieve_customer_pii", "admin_override"]
+
+  hr_manager:
+    allow: ["ask_public_policy", "retrieve_hr_payroll"]
+    deny:  ["admin_override"]
+
+  finance_analyst:
+    allow: ["ask_public_policy", "ask_metrics_finance"]
+    deny:  ["retrieve_customer_pii", "admin_override"]
+
+  admin:
+    allow: ["*"]
+    special: { break_glass_requires: ["ticket_id", "justification"] }

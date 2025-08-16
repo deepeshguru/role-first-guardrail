@@ -1,0 +1,29 @@
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+.cache/
+pycache/
+*.egg-info/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Logs and local data
+logs/
+*.log
+*.jsonl
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
