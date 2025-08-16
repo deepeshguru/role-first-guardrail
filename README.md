@@ -250,14 +250,14 @@ TP=3, TN=2, FP=0, FN=0
 ```mermaid
 flowchart TB
     A[Client]
-    B[Headers<br/>(role, org_unit, geo,<br/>ticket_id, justification)]
-    C[[Gate 0: Identity/Role Context<br/>(dev: headers; prod: JWT claims)]]
-    D[[Gate 1: Intent Classifier<br/>(zero-shot SBERT) → intent + confidence]]
-    E[[Gate 2: Policy Check<br/>(YAML RBAC/ABAC) → allow/deny + reason]]
+    B["Headers\n(role, org_unit, geo,\nticket_id, justification)"]
+    C["Gate 0: Identity/Role Context\n(dev: headers; prod: JWT claims)"]
+    D["Gate 1: Intent Classifier\n(zero-shot SBERT) → intent + confidence"]
+    E["Gate 2: Policy Check\n(YAML RBAC/ABAC) → allow/deny + reason"]
     F[ALLOW → (optional) Retrieval ACLs / Redaction]
     G[LLM call]
     H[DENY → return refusal with reason]
-    I[[Audit<br/>JSONL with role/attrs/intent/decision/latency]]
+    I["Audit\nJSONL with role/attrs/intent/decision/latency"]
     A --> B --> C --> D --> E
     E -->|allow| F --> G --> I
     E -->|deny| H --> I
